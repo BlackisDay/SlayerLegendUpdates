@@ -6,11 +6,7 @@ export default defineConfig({
   build:{
     outDir: 'client',
     rollupOptions:{
-      input:{
-        main: './src/main.jsx',
-        login: './login.html',
-        signup: './signup.html'
-      }
+      input:'src/main.jsx'
     }
   },
   plugins: [react()],
