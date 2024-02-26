@@ -1,6 +1,5 @@
 const db = require('../config/connection');
 const {Users} = require('../models');
-
 const cleanDB = require('./cleanDB');
 const userNames = require('./userNames');
 

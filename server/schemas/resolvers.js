@@ -19,8 +19,10 @@ const resolvers = {
     },
     login: async (parent, { username, password }) => {
       const user = await Users.findOne({ username });
-      if (!user || !(await user.isCorrectPassword(password))) {
-        throw new Error('Invalid Username or Password');
+      if (!user){
+        throw new Error('Invalid Username');
+      } else if (password !== user.password) {
+        throw new Error('Invalid Password');
       }
       return user;
     }
