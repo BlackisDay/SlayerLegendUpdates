@@ -9,11 +9,6 @@ const db = require('./config/connection');
 const PORT = process.env.PORT || 3001;
 const app = express();
 
-// app.use(cors(
-//   {
-    
-//   }
-// ))
 console.log(typeDefs,resolvers);
 const server = new ApolloServer({typeDefs,resolvers});
 console.log("hi2"); //Server can not be started it stops at const server
