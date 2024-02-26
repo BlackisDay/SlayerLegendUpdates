@@ -4,11 +4,11 @@ import SignupPage from './SignupPage';
 
 const Home = () => {
   return (
-    <div className="container">
-      <header className="page-header">
+    <div className="home-container">
+      <header className="home-title">
         <h1>Welcome to Our Website</h1>
       </header>
-      <section className="content">
+      <section className="home-message">
         <p>Signing up is not necessary. Feel free to explore our website!</p>
       </section>
     </div>

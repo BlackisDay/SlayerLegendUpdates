@@ -31,26 +31,26 @@ const Signup = () => {
 
   return (
     <div className="signup-container">
-    <h2>Signup</h2>
-    <p className="warning">DO NOT USE YOUR GAME PASSWORD</p>
-    <form onSubmit={handleFormSubmit}>
-      <label htmlFor="username" className="form-label">Username:</label>
-      <input
-        type="text"
-        name="username"
-        onChange={handleChange}
-        className="form-input"
-      />
-      <label htmlFor="password" className="form-label">Password:</label>
-      <input
-        type="password"
-        name="password"
-        onChange={handleChange}
-        className="form-input"
-      />
-      <button type="submit" className="submit-button">Submit</button>
-    </form>
-  </div>  
+      <h2 className ="signup-title">Signup</h2>
+      <p className="warning">DO NOT USE YOUR GAME PASSWORD</p>
+      <form onSubmit={handleFormSubmit} className="signup-form">
+        <label htmlFor="username" className="form-label">Username:</label>
+        <input
+          type="text"
+          name="username"
+          onChange={handleChange}
+          className="signup-form"
+        />
+        <label htmlFor="password" className="form-label">Password:</label>
+        <input
+          type="password"
+          name="password"
+          onChange={handleChange}
+          className="signup-form"
+        />
+        <button type="submit" className="signup-button">Submit</button>
+      </form>
+    </div>  
   );
 };
 

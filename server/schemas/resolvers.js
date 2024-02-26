@@ -1,32 +1,42 @@
-const {Users } = require('../models')
+const User = require('../models/user');
 
 const resolvers = {
   Query: {
-    user: async (parents,{username}) => {
-      const user = await Users.findOne({username});
-      if (!user) {
-        throw new Error('User not found');
+    user: async () => {
+      try {
+        const user = await User.findOne();
+        return user;
+      } catch (error) {
+        console.log(error);
+        throw new Error('Error fetching user data');
       }
-      return user;
     }
   },
   Mutation: {
-    signup: async (parent, { username, password }) => {
-      if (await Users.findOne({ username })) {
-        throw new Error('Username already exists');
+    signup: async (_, { username, password }) => {
+      try {
+        const user = await User.create({ username, password });
+        return user;
+      } catch (error) {
+        throw new Error('Error creating user');
       }
-      return Users.create({ username, password });
     },
-    login: async (parent, { username, password }) => {
-      const user = await Users.findOne({ username });
-      if (!user){
-        throw new Error('Invalid Username');
-      } else if (password !== user.password) {
-        throw new Error('Invalid Password');
+    login: async (_, { username, password }) => {
+      try {
+        const user = await User.findOne({ username });
+        if (!user) {
+          throw new Error('User not found');
+        }
+        const isCorrectPassword = await user.isCorrectPassword(password);
+        if (!isCorrectPassword) {
+          throw new Error('Invalid password');
+        }
+        return user;
+      } catch (error) {
+        throw new Error('Error logging in');
       }
-      return user;
     }
-  },
-}
+  }
+};
 
 module.exports = resolvers;

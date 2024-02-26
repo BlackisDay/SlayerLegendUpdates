@@ -32,6 +32,6 @@ userSchema.methods.isCorrectPassword = async function(password) {
 
 
 
-const Users = mongoose.model('Users', userSchema);
+const Users = mongoose.model('User', userSchema);
 
 module.exports = Users;

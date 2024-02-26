@@ -1,20 +1,23 @@
-const typeDefs =`
-  type User{
+const typeDefs = `
+  type User {
     username: String
     password: String
   }
+
   type Query {
-    user:User
+    user: User
   }
 
   type Mutation {
-      signup(
-      username: String, 
-      password: String): User
+    signup(
+      username: String!,
+      password: String!
+    ): User
 
-      login(
-        username: String,
-        password: String): User
+    login(
+      username: String!,
+      password: String!
+    ): User
   }
 `;
 
