@@ -1,6 +1,9 @@
 {
-  "name": "tech-matchup-app",
+  "name": "slayerlegendupdates",
   "version": "1.0.0",
+   "engines":{
+    "node":"v18.18.2"
+   },
   "description": "",
   "main": "server/server.js",
   "scripts": {
