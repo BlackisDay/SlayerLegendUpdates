@@ -7,7 +7,7 @@ import './App.css';
 import Signup from './pages/Signup.jsx';
 import SignupPage from './pages/SignupPage.jsx';  
 import LoginPage from './pages/LoginPage.jsx';
-
+import Forum from './pages/Forum.jsx';
 
 const router = createBrowserRouter([
   {
@@ -18,7 +18,11 @@ const router = createBrowserRouter([
       { index: true, element: <Home /> },
       { path: 'SignupPage', element: <SignupPage /> },
       { path: 'Signup', element: <Signup /> },
-      { path: 'Login', element: <LoginPage/>}
+      { path: 'Login', element: <LoginPage/>},
+      { path: '*', element: <NotFound /> },
+      { path: 'Home', element: <Home /> },
+      { path: 'Forum', element: <Forum /> },
+      
     ],
   },
 ]);

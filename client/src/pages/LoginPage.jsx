@@ -11,17 +11,17 @@ const LoginPage = () => {
   const handleFormSubmit = async event => {
     event.preventDefault();
     try {
-      const {data} =await login({
+      const {User} =await login({
         variables: { username, password } // Send plain text password
       });
       // If login successful, redirect the user to another page
       
       console.log('Login successful');
-      if(data){
+      if(User){
         window.location.href = '/';
-      }
+      } 
     } catch (error) {
-      console.error('Error logging in:', error);
+      console.log('Error logging in: ', error);
       // Handle login error, such as displaying an error message to the user
     }
   };

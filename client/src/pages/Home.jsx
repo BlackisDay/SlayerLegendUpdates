@@ -1,6 +1,5 @@
 import React from 'react';
-import Signup from './Signup';
-import SignupPage from './SignupPage';
+
 
 const Home = () => {
   return (

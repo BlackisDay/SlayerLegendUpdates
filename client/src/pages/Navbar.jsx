@@ -41,7 +41,12 @@ const Navbar = () => {
         </li>
         <li>
           <Link to="/login" className="text-white font-bold">
-            login
+            Login
+          </Link>
+        </li>
+        <li>
+          <Link to="/forum" className="text-white font-bold">
+            Forum
           </Link>
         </li>
       </ul>

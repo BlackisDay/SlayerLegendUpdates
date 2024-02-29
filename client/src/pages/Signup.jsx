@@ -11,12 +11,12 @@ const Signup = () => {
     event.preventDefault();
     
     try {
-      const hashedPassword = await bcrypt.hash(formState.password, 10);
-      await signup({ variables: { ...formState, password: hashedPassword } });
+      await signup({ variables: { ...formState }});
       // If signup successful, you can redirect the user to another page or show a success message
       console.log('Signup successful');
+      window.location.href = '/login';
     } catch (error) {
-      console.error('Error signing up:', error);
+      console.error('Error signing up: ', error);
       // Handle signup error, such as displaying an error message to the user
     }
   };
