@@ -7,6 +7,10 @@ export default defineConfig({
     server: {
     port: 3000,
     open: true,
+    esbuild: {
+      target: 'esnext',
+      platform: 'linux',
+    },
     proxy: {
       '/graphql': {
         target: 'http://localhost:3001',

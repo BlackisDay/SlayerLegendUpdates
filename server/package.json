@@ -19,8 +19,5 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.6"
-  },
-  "optionalDependencies": {
-    "@rollup/rollup-linux-x64-gnu": "4.9.5"
   }
 }
