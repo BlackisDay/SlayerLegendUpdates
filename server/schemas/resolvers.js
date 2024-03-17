@@ -17,7 +17,9 @@ const resolvers = {
       try {
         const hashedPassword = await bcrypt.hash(password, 10);
         const user = await User.create({ username, password: hashedPassword })
-        console.log('User created: ', user);
+        const savedUser = await user.save(); 
+        const successful =console.log('User created: ', user);
+        res.status(200).json(savedUser + successful);
         return user;
       } catch (error) {
         throw new Error('Error creating user');

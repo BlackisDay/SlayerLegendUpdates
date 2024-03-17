@@ -1,7 +1,7 @@
 const db = require('../config/connection');
 const {Users} = require('../models');
 const cleanDB = require('./cleanDB');
-const userNames = require('./userNames');
+const userNames = require('./userNames.json');
 
 db.once('open', async () => {
 

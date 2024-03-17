@@ -179,7 +179,89 @@ body {
 .NoAccount a:hover {
   text-decoration: underline; /* Underline link text on hover */
 }
+.forum-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
 
+.main-threads {
+  width: 250px;
+  border-radius:25px;
+  background-color:green;
+  padding: 20px;
+  background-color: #f0f0f0;
+}
+
+.main-threads h2 {
+  color: blue;
+}
+
+.main-threads ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.main-threads ul li {
+  cursor: pointer;
+  padding: 10px 0;
+  box-sizing: 0 10px 10px 10px rgba(0, 0, 0, 0.2);
+  border-style:groove;
+  color: rgb(222, 20, 225);
+  border-radius: 5px;
+  border-width:10px;
+  background-color:rgb(0, 0, 0);
+  transition: color 0.3s;
+}
+
+.main-threads ul li:hover {
+  color: #ff0505;
+}
+
+.sub-threads {
+  width: 100%;
+  max-width: 800px;
+  border-radius: 25px;
+  padding: 20px;
+  background-color: #fff;
+}
+
+.back-button {
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.back-button:hover {
+  background-color: #000;
+}
+/*Create a Post*/
+.create-post {
+  margin-top: 20px;
+}
+
+.create-post input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.create-post-button {
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.create-post-button:hover {
+  background-color: #000;
+}
 /* Animation for signup and login */
 @keyframes slideIn {
   0% {
@@ -208,5 +290,16 @@ body {
   
   .signup-container h2, .login-title {
     font-size: 20px;
+  }
+  .forum-container {
+    margin: 10px;
+  }
+  
+  .forum-image img {
+    width: 100%;
+  }
+  
+  .forum-button {
+    width: 100%;
   }
 }
