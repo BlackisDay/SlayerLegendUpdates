@@ -46,6 +46,7 @@ function Forum() {
               placeholder="Enter your post content"
             />
             <button onClick={handleCreatePost} className="create-post-button">Create Post</button>
+              
           </div>
         </div>
       )}
