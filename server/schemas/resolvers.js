@@ -1,53 +1,69 @@
-const User = require('../models/user');
-const bcrypt = require('bcryptjs');
+const { User } = require('../models');
+const { signToken, AuthenticationError } = require('../utils/auth');
+
 const resolvers = {
   Query: {
-    user: async () => { 
-      try {
-        const user = await User.findOne();
-        if(user){
-          return console.log('User found: ', user);
-        }
-        const successful = console.log('User found: ', user);
-        res.status(200).json(successful);
-        return user;
-      } catch (error) {
-        console.log(error);
-        throw new Error('Error fetching user data');
+    me: async (parent, args, context) => {
+      if (context.user) {
+        const userData = await User.findOne({ _id: context.user._id }).select('-__v -password');
+
+        return userData;
       }
-    }
-  },
-  Mutation: {
-    signup: async (_, { username, password }) => {
-      try {
-        const hashedPassword = await bcrypt.hash(password, 10);
-        const user = await User.create({ username, password: hashedPassword })
-        const savedUser = await User.save(); 
-        const successful =console.log('User created: ', user);
-        res.status(200).json(savedUser + successful);
-        return user;
-      } catch (error) {
-        throw new Error('Error creating user');
-      }
+
+      throw AuthenticationError;
     },
-    login: async (_, { username, password }) => {
-      try {
-        const user = await User.findOne({ username});
-        if (!user) {
-          throw new Error('User not found');
-        }
-        const passwordMatch = await bcrypt.compareSync(password, User.password);
-        if (passwordMatch === false) {
-          throw new Error("incorrect password " + console.log(passwordMatch) + console.log(user.password) + console.log(Error));
-        } else if (passwordMatch === true){
-          console.log(passwordMatch);
-        }
-           console.log('Login successful');
-        return user;
-      } catch (error) {
-        throw new Error(console.error('Error logging in: ', error));
+  },
+
+  Mutation: {
+    addUser: async (parent, args) => {
+      const user = await User.create(args);
+      const token = signToken(user);
+
+      return { token, user };
+    },
+    login: async (parent, { email, password }) => {
+      const user = await User.findOne({ email });
+
+      if (!user) {
+        throw AuthenticationError;
       }
-    }
-  }
-}
+
+      const correctPw = await user.isCorrectPassword(password);
+
+      if (!correctPw) {
+        throw AuthenticationError;
+      }
+
+      const token = signToken(user);
+      return { token, user };
+    },
+    saveBook: async (parent, { bookData }, context) => {
+      if (context.user) {
+        const updatedUser = await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $push: { savedBooks: bookData } },
+          { new: true }
+        );
+
+        return updatedUser;
+      }
+
+      throw AuthenticationError;
+    },
+    removeBook: async (parent, { bookId }, context) => {
+      if (context.user) {
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { savedBooks: { bookId } } },
+          { new: true }
+        );
+
+        return updatedUser;
+      }
+
+      throw AuthenticationError;
+    },
+  },
+};
+
 module.exports = resolvers;

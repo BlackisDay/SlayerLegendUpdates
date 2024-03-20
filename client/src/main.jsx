@@ -1,30 +1,40 @@
-import ReactDOM from 'react-dom/client';
-import {createBrowserRouter,RouterProvider } from 'react-router-dom';
-import App from './App.jsx';
-import Home from './pages/Home.jsx';
-import NotFound from './pages/NotFound.jsx';
-import './App.css';
-import Signup from './pages/Signup.jsx';
-import SignupPage from './pages/SignupPage.jsx';  
-import LoginPage from './pages/LoginPage.jsx';
-import Forum from './pages/Forum.jsx';
+import ReactDOM from 'react-dom/client'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import 'bootstrap/dist/css/bootstrap.min.css'
+
+import App from './App.jsx'
+import SearchBooks from './pages/SearchBooks'
+import SavedBooks from './pages/SavedBooks'
+import Forum from './components/Forum.jsx'
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
-    errorElement: <NotFound />,
+    errorElement: <h1 className="display-2">Error</h1>,
     children: [
-      { index: true, element: <Home /> },
-      { path: 'SignupPage', element: <SignupPage /> },
-      { path: 'Signup', element: <Signup /> },
-      { path: 'Login', element: <LoginPage/>},
-      { path: '*', element: <NotFound /> },
-      { path: 'Home', element: <Home /> },
-      { path: 'Forum', element: <Forum /> },
-      
-    ],
-  },
-]);
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<RouterProvider router={router} />)
+      {
+        index: true,
+        element: <SearchBooks />
+      }, {
+        path: '/saved',
+        element: <SavedBooks />
+      },{
+        path: '/forum',
+        element: <Forum />
+      },
+      {
+        path: "/profile",
+        element: <h1>In Progress</h1>
+      },
+      {
+        path: '*',
+        element: <h1 className="display-2">Page Does Not Exist</h1>
+      }
+    ]
+  }
+])
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <RouterProvider router={router} />
+)
