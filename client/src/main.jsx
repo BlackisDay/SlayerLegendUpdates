@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import App from './App.jsx'
 import SearchBooks from './pages/SearchBooks'
 import SavedBooks from './pages/SavedBooks'
-import Forum from './components/Forum.jsx'
+import Forum from './pages/Forum.jsx'
 
 const router = createBrowserRouter([
   {
